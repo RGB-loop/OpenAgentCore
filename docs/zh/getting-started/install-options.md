@@ -1,7 +1,7 @@
 ---
 title: "安装选项"
 source: docs/getting-started/install-options.md
-source_hash: f4d146c2e939103b489c20709d15eae5ec8916f1bc30dd90ad1b6b4dadc80bbc
+source_hash: 27a99ee594820f0e30ccbb99873895f1535f3b890a3d3e977037caff75617265
 ---
 
 [默认安装](install.md)无需任何选项。本页介绍安装选项、Compose 部署和反向代理配置。
@@ -47,7 +47,7 @@ docker compose exec web oac-web core-key
 
 ## 进程设置 {#process-settings}
 
-这些标志只会一次性写入 `.env`。安装完成后，编辑该文件并运行 `oac apply`。对已有安装重新运行安装程序时，这些标志会被忽略，安装以已保存的设置启动。
+这些标志只会一次性写入 `.env`。安装完成后，编辑该文件并运行 `oac apply`。对已有安装重新运行安装程序时，这些标志会被忽略，安装程序会指出与已保存设置不同的标志，并以已保存的设置启动。
 
 以下表格是由脚本自动生成的参考信息，因此保留为英文原文：
 | Flag | `.env` variable |
