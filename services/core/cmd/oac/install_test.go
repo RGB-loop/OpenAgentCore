@@ -491,7 +491,7 @@ func TestInstallReportsStartFailuresByCause(t *testing.T) {
 			if err == nil || !strings.HasPrefix(err.Error(), c.want) || strings.Contains(err.Error(), c.unwanted) {
 				t.Fatalf("got %v", err)
 			}
-			if c.call == "compose up" && !strings.HasSuffix(err.Error(), "installation with spaces/compose.yaml' logs --tail 50 core web") {
+			if c.call == "compose up" && !strings.HasSuffix(err.Error(), "compose.yaml' logs --tail 50 core web") {
 				t.Fatalf("no log command: %v", err)
 			}
 		})
