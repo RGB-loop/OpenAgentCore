@@ -1,7 +1,7 @@
 ---
 title: "运维"
 source: docs/getting-started/operations.md
-source_hash: 9281f985f203a33cf2e861a118204839277cef13ebdd484c7b41dfd5cd68b8d5
+source_hash: 09477f6b5df527092cb42d163bf5b4197834cd1ca7c6ed8cfdff4db805f2e468
 ---
 
 安装运维人员负责 Core 主机、存储和可用性。节点主机运行各自的服务；参阅[节点](nodes.md)。设置见[配置参考](../configuration.md)。
@@ -201,7 +201,7 @@ v0.0.10 及更高版本的安装可以原地升级到更新的发布版本，并
 
 以下三种连接要求两端的协议版本相同：Core 与节点、节点与 microsandbox 辅助程序、Core 与 Runtime。升级不会改动任何节点主机或正在运行的沙箱。更改其中某个协议的版本会在发布说明中注明，并指出需要以下哪些操作：
 
-- 重新安装每个节点：[移除节点](nodes.md#remove-a-node)，清理主机，再通过 **添加节点** 重新添加该主机；
+- 重新安装每个节点：[移除节点](nodes.md#remove-a-node)，清理主机，再通过 **添加节点** 重新添加该主机。Core 拒绝移除仍持有沙箱的节点，所以升级前先归档这些 Session；
 - 升级后立即应用该版本的 Runtime；仍在较早代次上的沙箱将停止工作；
 - [构建新的 E2B 模板](https://github.com/MiniMax-AI/OpenAgentCore/blob/main/services/core/deploy/e2b/README.md#build-a-template)，并在[沙箱配置](nodes.md#change-the-sandbox-configuration)中选择它；
 - 重新安装[自托管机器](self-hosted.md#connect-a-machine)。
@@ -228,7 +228,7 @@ cd && rm -rf ~/.oac/core
 
 卸载不停止沙箱：节点沙箱在节点继续运行，E2B 沙箱在 E2B 继续运行并计费。Core 仍运行时，归档它们的 Session，或[重置部署](nodes.md#change-the-sandbox-configuration)并等待完成；命令展示 Core 正在使用的沙箱数量。
 
-其他主机上的节点继续运行。按常规方式卸载时，先在 Web 移除，见[移除节点](nodes.md#remove-a-node)。安装目录删除后，它们的 Core 已不存在：在各节点主机使用当时发布版的 `node-install.pyz`，执行带 `--force` 的节点卸载命令。安装 ID 在数据卷的 `secrets/core/installation.id` 中。
+其他主机上的节点继续运行。按常规方式卸载时，先在 Web 移除，见[移除节点](nodes.md#remove-a-node)。安装目录删除后，它们的 Core 已不存在：在各节点主机用原命令留在 `~/.oac/node-bootstrap/` 的安装程序，执行带 `--force` 的节点卸载命令，见[移除节点](nodes.md#remove-a-node)。安装 ID 在节点的单元名 `oac-node-<installation-id>.service` 中；卸载 Core 之前，**设置** → **服务与部署** → **安装详情** 也会展示。
 
 ## 问题排查 {#troubleshooting}
 
